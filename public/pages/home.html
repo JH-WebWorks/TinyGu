@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="/styles/home.css" />
+
+<h2 class="home_title" onload="loadHome">
+  Erstelle einen Goethe-Universität-Kurzlink
+</h2>
+
+<form class="home_form">
+  <div class="home_url flex-row">
+    <input
+      type="text"
+      name="url"
+      placeholder="http://etwas.uni-frankfurt.de/..."
+      required
+    /><input type="submit" value="Kürzen" />
+  </div>
+  <div class="home_optional_keyword flex-column">
+    <strong
+      >Optional kannst du statt des Zufallkürzels ein eigenes vergeben:</strong
+    >
+
+    <div class="flex-row">
+      <label id="current_page_url" for="keyword">
+        <script>
+          $("#current_page_url").html(window.location.origin);
+        </script>
+      </label>
+      <input type="text" name="keyword" placeholder="Optionales Kürzel" />
+    </div>
+  </div>
+</form>
+<div class="home_history"></div>
+<script>
+  $(".home_form").submit((event) => {
+    $.ajax({
+      contentType: "application/json",
+      data: JSON.stringify({
+        url: $("input[name='url']").val(),
+        keyword: $("input[name='keyword']").val(),
+      }),
+      dataType: "json",
+      success: function (data) {
+        $(".home_history").html(
+          `Link wurde erstellt: ${window.location.origin}/${data.keyword}`
+        );
+        $("input[name='url']").val("");
+        $("input[name='keyword']").val("");
+      },
+      error: function (data) {
+        console.log(data.responseJSON);
+        switch (data.responseJSON.error) {
+          case "keyword already exists":
+            alert("Das Kürzel ist beretis vergeben1");
+            $("input[name='keyword']").val("");
+            break;
+          case "the url is not valid":
+            alert("Die URL ist nicht gültig!");
+            break;
+          case "the keyword is not valid":
+            alert("Die Kurze URL darf nur A-Z, a-z, 0-9 und - beinhalten!");
+            break;
+          default:
+            alert("Something went wrong please contact the administrator!");
+        }
+      },
+      processData: false,
+      type: "POST",
+      url: "/create",
+    });
+    event.preventDefault();
+  });
+</script>

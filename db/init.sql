@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS `tinygu`;
+
+CREATE TABLE `tinygu` (
+    `keyword` VARCHAR(200) NOT NULL,
+    `url` TEXT NOT NULL,
+    `title` TEXT NULL DEFAULT NULL,
+    `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `ip` VARCHAR(41) NOT NULL,
+    `clicks` INT(10) UNSIGNED NOT NULL DEFAULT 0,
+    PRIMARY KEY (`keyword`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_bin;

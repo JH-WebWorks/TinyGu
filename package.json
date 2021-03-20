@@ -1,0 +1,32 @@
+{
+  "name": "tinygu",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js -e js,json,sql,scss,html",
+    "scss": "node-sass styles -o public/styles",
+    "deploy": "npm run scss && node app.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "helmet": "^3.22.0",
+    "jquery": "^3.5.1",
+    "mariadb": "^2.4.0",
+    "node-sass": "^4.14.1",
+    "sequelize": "^5.21.10",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "nodemonConfig": {
+    "events": {
+      "start": "npm run scss",
+      "restart": "npm run scss"
+    }
+  }
+}
