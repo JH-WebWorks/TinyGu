@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 require("dotenv").config();
 const urlParser = require("url");
-const allowedUrls = require("../config.json").allowedUrls;
+const allowedUrls = require("../../config.json").allowedUrls;
 
 function insertIntoDatabase(req, res, keyword) {
   Link.create({ url: req.body.url, keyword: keyword })

@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js -e js,json,sql,scss,html",
+    "start": "nodemon server/app.js -e js,json,sql,scss,html",
     "scss": "node-sass styles -o public/styles",
-    "deploy": "npm run scss && node app.js"
+    "deploy": "npm run scss && node server/app.js"
   },
   "dependencies": {
     "compression": "^1.7.4",

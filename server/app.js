@@ -32,13 +32,13 @@ app.use("/impressum", index);
 app.use("/404-Not-Found", index);
 app.use(
   "/lib/jquery",
-  express.static(path.join(__dirname, "node_modules/jquery/dist"))
+  express.static(path.join(__dirname, '..', "node_modules/jquery/dist"))
 );
 
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
-app.use("/styles", express.static(__dirname + "/public" + "/styles"));
-app.use("/assets", express.static(__dirname + "/public" + "/assets"));
-app.use("/pages", express.static(__dirname + "/public" + "/pages"));
+app.use(favicon(path.join(__dirname, '..', "public", "favicon.ico")));
+app.use("/styles", express.static(path.join(__dirname, '..', 'public', 'styles')));
+app.use("/assets", express.static(path.join(__dirname, '..', 'public', 'assets')));
+app.use("/pages", express.static(path.join(__dirname, '..', 'public', 'pages')));
 
 // api routing
 app.use("/create", create);
