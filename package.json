@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server/app.js -e js,json,sql,scss,html",
+    "start": "nodemon server/app.ts -e ts,js,json,sql,scss,html",
     "scss": "node-sass styles -o public/styles",
-    "deploy": "npm run scss && node server/app.js"
+    "deploy": "npm run scss && node server/app.ts"
   },
   "dependencies": {
+    "@prisma/client": "2.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -17,11 +18,17 @@
     "jquery": "^3.5.1",
     "mariadb": "^2.4.0",
     "node-sass": "^4.14.1",
-    "sequelize": "^5.21.10",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.37",
+    "@types/sequelize": "^4.28.9",
+    "nodemon": "^2.0.4",
+    "prisma": "2.19.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
   },
   "nodemonConfig": {
     "events": {

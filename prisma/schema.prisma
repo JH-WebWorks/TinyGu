@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model clicks {
+  id          Int      @id @default(autoincrement())
+  timestamp   DateTime @db.DateTime(0) @default(now())
+  linkKeyword String?  @db.VarChar(200)
+  links       links?   @relation(fields: [linkKeyword], references: [keyword])
+
+  @@index([linkKeyword], name: "linkKeyword")
+}
+
+model links {
+  keyword   String   @id @db.VarChar(200)
+  url       String   @db.Text
+  timestamp DateTime @db.DateTime(0) @default(now())
+  clicks    clicks[]
+}
