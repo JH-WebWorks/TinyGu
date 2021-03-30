@@ -17,18 +17,6 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
   }).then((inserted) => res.status(200).json(inserted)).catch(
     console.log
   )
-  // Link.create({ url: req.body.url, keyword: keyword })
-  //   .then((inserted) => res.status(200).json(inserted.dataValues))
-  //   .catch((error) => {
-  //     if (error.errors[0].message === "PRIMARY must be unique") {
-  //       res.status(400).json({ error: "keyword already exists" });
-  //     } else {
-  //       res.status(400).json({
-  //         error: "something went wrong please contact the administrator",
-  //       });
-  //       throw error;
-  //     }
-  //   });
 }
 
 function generateKeyword(length: number, callback: (req: Request, res: Response, keyword: string) => void, req: Request, res: Response) {
