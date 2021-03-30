@@ -1,47 +1,55 @@
-import express, {Request, Response} from 'express';
-import {PrismaClient} from '@prisma/client';
+import express, { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 dotenv.config();
 import urlParser from 'url';
 const router = express.Router();
 const prisma = new PrismaClient();
 
-import {allowedUrls} from '../../config.json';
+import { allowedUrls } from '../../config.json';
 
 function insertIntoDatabase(req: Request, res: Response, keyword: string) {
-  prisma.links.create({
-    data: {
-      url: req.body.url,
-      keyword: keyword
-    }
-  }).then((inserted) => res.status(200).json(inserted)).catch(
-    console.log
-  )
+  prisma.links
+    .create({
+      data: {
+        url: req.body.url,
+        keyword: keyword,
+      },
+    })
+    .then((inserted) => res.status(200).json(inserted))
+    .catch(console.log);
 }
 
-function generateKeyword(length: number, callback: (req: Request, res: Response, keyword: string) => void, req: Request, res: Response) {
+function generateKeyword(
+  length: number,
+  callback: (req: Request, res: Response, keyword: string) => void,
+  req: Request,
+  res: Response
+) {
   let result = "";
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
-  prisma.links.count({
-    where: {keyword: result}
-  }).then(count => {
-    if (count === 0) {
-      callback(req, res, result);
-    } else {
-      generateKeyword(length + 1, callback, req, res);
-    }
-  })
+  prisma.links
+    .count({
+      where: { keyword: result },
+    })
+    .then((count) => {
+      if (count === 0) {
+        callback(req, res, result);
+      } else {
+        generateKeyword(length + 1, callback, req, res);
+      }
+    });
 }
 
 function getDomain(url: string) {
   const parsedURL = urlParser.parse(url).host;
-  
+
   if (parsedURL === null) {
-    throw Error("host is null")
+    throw Error("host is null");
   }
   const hostArray = parsedURL.split(".");
   return hostArray.slice(Math.max(hostArray.length - 2, 0)).join(".");
@@ -61,7 +69,7 @@ function validateUrl(url: string) {
 }
 
 /* GET users listing. */
-router.post("/", function (req, res) {
+router.post("/", (req, res) => {
   if (!validateUrl(req.body.url)) {
     return res.status(400).json({ error: "the url is not valid" });
   }

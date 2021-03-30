@@ -34,9 +34,18 @@ app.use(
 );
 
 // app.use(favicon(path.join(__dirname, '..', "public", "favicon.ico")));
-app.use("/styles", express.static(path.join(__dirname, '..', 'public', 'styles')));
-app.use("/assets", express.static(path.join(__dirname, '..', 'public', 'assets')));
-app.use("/pages", express.static(path.join(__dirname, '..', 'public', 'pages')));
+app.use(
+  "/styles",
+  express.static(path.join(__dirname, "..", "public", "styles"))
+);
+app.use(
+  "/assets",
+  express.static(path.join(__dirname, "..", "public", "assets"))
+);
+app.use(
+  "/pages",
+  express.static(path.join(__dirname, "..", "public", "pages"))
+);
 
 // api routing
 app.use("/create", create);
