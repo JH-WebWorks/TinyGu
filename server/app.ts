@@ -1,4 +1,5 @@
-require("dotenv").config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 import express from 'express';
 const app = express();
@@ -14,13 +15,11 @@ import create from './routes/create';
 // import error handling middleware
 // const errorHandling = require("./apiFunctions/errorHandling");
 
-// import mysql credentials
-// for compremizing the web request
-var compression = require("compression");
+import compression from 'compression';
 app.use(compression());
 
 // security package
-var helmet = require("helmet");
+import * as helmet from 'helmet';
 app.use(helmet());
 
 app.use(express.json());

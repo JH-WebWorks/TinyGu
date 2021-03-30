@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
 import {PrismaClient} from '@prisma/client';
 const router = express.Router();
@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 dotenv.config()
 
 /* GET users listing. */
-router.get("/:shortlink", function (req, res, next) {
+router.get("/:shortlink", function (req: Request, res: Response) {
   prisma.links.findUnique({
     where: {
       keyword: req.params.shortlink

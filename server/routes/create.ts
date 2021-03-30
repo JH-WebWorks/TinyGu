@@ -20,10 +20,10 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
 }
 
 function generateKeyword(length: number, callback: (req: Request, res: Response, keyword: string) => void, req: Request, res: Response) {
-  var result = "";
-  var characters =
+  let result = "";
+  const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   prisma.links.count({
@@ -38,7 +38,12 @@ function generateKeyword(length: number, callback: (req: Request, res: Response,
 }
 
 function getDomain(url: string) {
-  var hostArray = urlParser.parse(url).host!.split(".");
+  const parsedURL = urlParser.parse(url).host;
+  
+  if (parsedURL === null) {
+    throw Error("host is null")
+  }
+  const hostArray = parsedURL.split(".");
   return hostArray.slice(Math.max(hostArray.length - 2, 0)).join(".");
 }
 
@@ -56,7 +61,7 @@ function validateUrl(url: string) {
 }
 
 /* GET users listing. */
-router.post("/", function (req, res, next) {
+router.post("/", function (req, res) {
   if (!validateUrl(req.body.url)) {
     return res.status(400).json({ error: "the url is not valid" });
   }
