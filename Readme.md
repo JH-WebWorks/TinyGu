@@ -2,9 +2,9 @@
 
 ## Requirements
 
-1. node v10
+1. node v14.16.0
 2. Database (MariaDB)
-3. npm v6
+3. yarn v1.22.5
 
 ## Setup
 
