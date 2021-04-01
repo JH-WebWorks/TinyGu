@@ -13,11 +13,7 @@ As always `npm install`.
 For Develeopment usage you need to create a `.env` file in your root directory with the content:
 
 ```
-DB_DATA=your_db_database
-DB_USER=your_db_user
-DB_PASS=your_db_password
-DB_HOST=your_db_host
-DB_PORT=your_db_port
+DATABASE_URL = 'mysql://root:root@localhost:3306/tinygu'
 
 ENVIROMENT=
 PORT=(3000 by default)
