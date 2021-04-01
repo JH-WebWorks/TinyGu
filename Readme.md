@@ -32,9 +32,8 @@ You want to run `npm run deploy` with will create the CSS files from the SCSS fi
 There are no fancy functionalities implemented. If it crashes, it does not restart, you have to handle that yourself.
 
 ## Database
+We use [Prisma](https://prisma.io) as our ORM. You can read the [concepts](https://www.prisma.io/docs/concepts) to get mor details on special parts of Prisma. But before you start, we recomend you to read about these concepts:
+1. [Data Model](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model)
+2. [Prisma Client Section 3 & 4](https://www.prisma.io/docs/concepts/components/prisma-client#3-use-prisma-client-to-send-queries-to-your-database)
+3. [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate)
 
-This Project needs a MariaDB database and uses sequellize [docs](https://sequelize.org/master/) to connect to the database. Sequellize is an ORM and allows you to use another Databse if you want. To do this
-
-1. you need to change the `dialect` varriable int `db/connection.js`.
-2. remove the mariadb connector `npm uninstall mariadb`
-3. install the connector you want (see installation section [here](https://sequelize.org/master/manual/getting-started.html#installing))
