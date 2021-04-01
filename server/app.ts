@@ -19,8 +19,8 @@ import compression from 'compression';
 app.use(compression());
 
 // security package
-import * as helmet from 'helmet';
-app.use(helmet());
+// import * as helmet from 'helmet';
+// app.use(helmet());
 
 app.use(express.json());
 
