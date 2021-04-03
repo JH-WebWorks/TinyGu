@@ -8,26 +8,32 @@
 
 ## Setup
 
-As always `npm install`.
+### get the submodules
+```sh
+git submodule init
+git submodule update
+```
+
+As always `yarn`.
 
 For Develeopment usage you need to create a `.env` file in your root directory with the content:
 
 ```
 DATABASE_URL = 'mysql://root:root@localhost:3306/tinygu'
 
-ENVIROMENT=
-PORT=(3000 by default)
+ENVIROMENT= #optionaly
+PORT=(3000 by default) #optional
 ```
 
 ### For Development
 
 It is nessersary to set the Varriabel `ENVIROMENT=development`, otherwise it will not (re)create the database and fill it with testdata.
 
-Then you can start the deveopment server with `npm run start`
+Then you can start the deveopment server with `yarn run start`
 
 ### For Production
 
-You want to run `npm run deploy` with will create the CSS files from the SCSS files and starts the server.
+You want to run `yarn run deploy` with will create the CSS files from the SCSS files and starts the server.
 
 There are no fancy functionalities implemented. If it crashes, it does not restart, you have to handle that yourself.
 
