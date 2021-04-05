@@ -52,4 +52,5 @@ app.use("/create", create);
 app.use(redirect);
 
 // start the app
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

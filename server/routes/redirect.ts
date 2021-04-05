@@ -1,6 +1,6 @@
-import express, { Request, Response } from 'express';
-import dotenv from 'dotenv';
-import { PrismaClient } from '@prisma/client';
+import express, { Request, Response } from "express";
+import dotenv from "dotenv";
+import { PrismaClient } from "@prisma/client";
 const router = express.Router();
 const prisma = new PrismaClient();
 dotenv.config();
@@ -23,7 +23,7 @@ router.get("/:shortlink", (req: Request, res: Response) => {
               linkKeyword: req.params.shortlink,
             },
           })
-          .then(console.log);
+          .then();
         res.redirect(link.url);
       }
     });

@@ -1,12 +1,12 @@
-import express, { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-import dotenv from 'dotenv';
+import express, { Request, Response } from "express";
+import { PrismaClient } from "@prisma/client";
+import dotenv from "dotenv";
 dotenv.config();
-import urlParser from 'url';
+import urlParser from "url";
 const router = express.Router();
 const prisma = new PrismaClient();
 
-import { allowedUrls } from '../../config.json';
+import { allowedUrls } from "../../config.json";
 
 function insertIntoDatabase(req: Request, res: Response, keyword: string) {
   prisma.links
@@ -16,8 +16,7 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
         keyword: keyword,
       },
     })
-    .then((inserted) => res.status(200).json(inserted))
-    .catch(console.log);
+    .then((inserted) => res.status(200).json(inserted));
 }
 
 function generateKeyword(
@@ -81,11 +80,9 @@ router.post("/", (req, res) => {
     generateKeyword(5, insertIntoDatabase, req, res);
   } else {
     const regex = RegExp("^[A-Za-z0-9-]{3,100}$");
-    console.log(!regex.test(req.body.keyword));
     if (!regex.test(req.body.keyword)) {
       return res.status(400).json({ error: "the keyword is not valid" });
     }
-    console.log("hello i'm here");
     insertIntoDatabase(req, res, req.body.keyword);
   }
 });

@@ -38,10 +38,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@jh-webworks/eslint-config-jh-webworks@latest":
-  version "1.0.5"
-  resolved "https://npm.pkg.github.com/download/@jh-webworks/eslint-config-jh-webworks/1.0.5/624c3338a9fbda48cee364811baf36058fe09834eec3c86552190eeb968b5501#da0a4272fc954a7a05a424f3891986d3ae5bef22"
-  integrity sha512-za6no+z547j2Snb5ulTZZnNfeaeUKNYJc+mbgFsrE7QlX1rY4PyRz6auEb/Zc5d431eQqq7E9MIJFSv/0x8i+Q==
+"@jh-webworks/eslint-config-jh-webworks@1.0.6":
+  version "1.0.6"
+  resolved "https://npm.pkg.github.com/download/@jh-webworks/eslint-config-jh-webworks/1.0.6/b2f6d8fdcf8a2dd3b11e25b1907298c9ad758cd065c831bb6f445cfb666a4119#6544c6de2703c0543b42b35df6283c1484e76028"
+  integrity sha512-khil/pKHqCpeFhyK0Fn46V6hGKnGzrtt3lDOSn5HIOzl58nSc4GeI6jPxLbGCme+AgvQXO0KACUJ9CX8kLd7xA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.20.0"
     "@typescript-eslint/parser" "^4.20.0"
