@@ -1,0 +1,6 @@
+{
+    // "extends": "@jh-webworks/eslint-config-jh-webworks"
+    "extends": [
+        "@jh-webworks/eslint-config-jh-webworks"
+    ]
+}

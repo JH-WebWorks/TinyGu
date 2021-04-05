@@ -1,21 +1,21 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
-import express from 'express';
+import express from "express";
 const app = express();
 const port = process.env.PORT || "3000";
 
-import path from 'path';
+import path from "path";
 // import favicon from 'serve-favicon';
 
-import index from './routes/index';
-import redirect from './routes/redirect';
-import create from './routes/create';
+import index from "./routes/index";
+import redirect from "./routes/redirect";
+import create from "./routes/create";
 // const create = require("./routes/create");
 // import error handling middleware
 // const errorHandling = require("./apiFunctions/errorHandling");
 
-import compression from 'compression';
+import compression from "compression";
 app.use(compression());
 
 // security package
@@ -30,7 +30,7 @@ app.use("/impressum", index);
 app.use("/404-Not-Found", index);
 app.use(
   "/lib/jquery",
-  express.static(path.join(__dirname, '..', "node_modules/jquery/dist"))
+  express.static(path.join(__dirname, "..", "node_modules/jquery/dist"))
 );
 
 // app.use(favicon(path.join(__dirname, '..', "public", "favicon.ico")));
