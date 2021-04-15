@@ -5,28 +5,9 @@
     "moduleResolution": "node",
     "rootDir": "./",
     "outDir": "./build",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
     "sourceMap": true,
     "allowJs": true,
-    "strict": true,
-    "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true,
-    "noEmit": true
-  },
-  "exclude": [
-    "public/src"
-  ],
-  "include": [
-    "./"
-  ]
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+   }
 }
