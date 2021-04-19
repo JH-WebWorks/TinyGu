@@ -1,0 +1,46 @@
+name: build_and_deploy
+
+on:
+  push:
+    branches: ["staging"]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - 
+        uses: actions/checkout@v1
+     -
+        name: build
+        run: docker build -t tinygu:latest .
+     -
+        name: login
+        run: echo ${{ secrets.CR_PAT }} | docker login docker.pkg.github.com -u ${{ secrets.CR_USERNAME }} --password-stdin
+     -  
+        name: tag
+        run: docker tag tinygu docker.pkg.github.com/jh-webworks/tinygu/tinygu:latest
+     -  
+        name: push
+        run: docker push docker.pkg.github.com/jh-webworks/tinygu/tinygu:latest
+        
+  deploy:
+    name: deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+     - 
+      name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USERNAME }} 
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          echo ${{ secrets.CR_PAT }} | docker login docker.pkg.github.com -u ${{ secrets.CR_USERNAME }} --password-stdin
+          docker pull docker.pkg.github.com/jh-webworks/tinygu/tinygu:latest
+          docker stop tinygu || true && docker rm tinygu || true 
+          docker run --name=tinygu --network=mariaDB -e DATABASE_URL='${{ secrets.DATABASE_URL }}' -e NODE_ENV=staging -e PORT=3000 --restart=unless-stopped -p 8086:3000 -d docker.pkg.github.com/jh-webworks/tinygu/tinygu:latest
+          docker logout docker.pkg.github.com
+        debug: true 

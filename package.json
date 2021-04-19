@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon server/app.ts -e ts,js,json,sql,scss,html",
     "scss": "node-sass styles -o public/styles",
-    "deploy": "node build/app.js",
+    "deploy": "npx prisma migrate deploy && node build/app.js",
     "build": "tsc --build && yarn run scss"
   },
   "dependencies": {
