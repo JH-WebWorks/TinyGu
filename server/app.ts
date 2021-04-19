@@ -1,25 +1,39 @@
 import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import path from "path";
+import index from "./routes/index";
+import compression from "compression";
+import favicon from "serve-favicon";
+
+// import API routes
+import redirect from "./routes/redirect";
+import create from "./routes/create";
 dotenv.config();
 
-import express from "express";
 const app = express();
 const port = process.env.PORT || "3000";
 
-import path from "path";
-// import favicon from 'serve-favicon';
-
-import index from "./routes/index";
-import redirect from "./routes/redirect";
-import create from "./routes/create";
-// const create = require("./routes/create");
-// import error handling middleware
-// const errorHandling = require("./apiFunctions/errorHandling");
-
-import compression from "compression";
 app.use(compression());
 
+let allowedOrigins;
+
+if (process.env.NODE_ENV === "production") {
+  allowedOrigins = ["https://tinygu.de", "https://goethe.link"];
+} else if (process.env.NODE_ENV === "staging") {
+  allowedOrigins = ["https://tinygu.jh-webworks.de", "https://goethe.link"];
+} else {
+  allowedOrigins = [`http://localhost:${port}`];
+}
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+};
+
+app.use(cors(options));
+
 // security package
-// import * as helmet from 'helmet';
+// import helmet from "helmet";
 // app.use(helmet());
 
 app.use(express.json());
@@ -33,7 +47,8 @@ app.use(
   express.static(path.join(__dirname, "..", "node_modules/jquery/dist"))
 );
 
-// app.use(favicon(path.join(__dirname, '..', "public", "favicon.ico")));
+// serving frontend
+app.use(favicon(path.join(__dirname, "..", "public", "favicon.ico")));
 app.use(
   "/styles",
   express.static(path.join(__dirname, "..", "public", "styles"))
@@ -51,6 +66,5 @@ app.use(
 app.use("/create", create);
 app.use(redirect);
 
-// start the app
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

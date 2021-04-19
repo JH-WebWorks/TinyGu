@@ -6,7 +6,7 @@ import urlParser from "url";
 const router = express.Router();
 const prisma = new PrismaClient();
 
-import { allowedUrls } from "../../config.json";
+import { allowedUrls } from "../config.json";
 
 function insertIntoDatabase(req: Request, res: Response, keyword: string) {
   prisma.links

@@ -8,12 +8,6 @@
 
 ## Setup
 
-### get the submodules
-```sh
-git submodule init
-git submodule update
-```
-
 As always `yarn`.
 
 For Develeopment usage you need to create a `.env` file in your root directory with the content:
@@ -21,7 +15,7 @@ For Develeopment usage you need to create a `.env` file in your root directory w
 ```
 DATABASE_URL = 'mysql://root:root@localhost:3306/tinygu'
 
-ENVIROMENT= #optionaly
+NODE_ENV= #optionaly
 PORT=(3000 by default) #optional
 ```
 
@@ -38,8 +32,9 @@ You want to run `yarn run deploy` with will create the CSS files from the SCSS f
 There are no fancy functionalities implemented. If it crashes, it does not restart, you have to handle that yourself.
 
 ## Database
+
 We use [Prisma](https://prisma.io) as our ORM. You can read the [concepts](https://www.prisma.io/docs/concepts) to get mor details on special parts of Prisma. But before you start, we recomend you to read about these concepts:
+
 1. [Data Model](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model)
 2. [Prisma Client Section 3 & 4](https://www.prisma.io/docs/concepts/components/prisma-client#3-use-prisma-client-to-send-queries-to-your-database)
 3. [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate)
-

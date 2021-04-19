@@ -1,6 +1,5 @@
-/node_modules
-
-.package-lock.json
 .env
 
-/public/styles
+public/styles
+node_modules
+build
