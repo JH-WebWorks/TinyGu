@@ -21,11 +21,13 @@ PORT=(3000 by default) #optional
 
 ### For Development
 
-It is nessersary to set the Varriabel `ENVIROMENT=development`, otherwise it will not (re)create the database and fill it with testdata.
-
 Then you can start the deveopment server with `yarn run start`
 
 ### For Production
+
+```
+NODE_ENV=(staging|production)
+```
 
 You want to run `yarn run deploy` with will create the CSS files from the SCSS files and starts the server.
 
