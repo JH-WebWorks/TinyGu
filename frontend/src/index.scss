@@ -1,0 +1,19 @@
+body {
+  background-image: url("/assets/goethe-titlebg.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left bottom;
+  background-color: #d1d2d3;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
