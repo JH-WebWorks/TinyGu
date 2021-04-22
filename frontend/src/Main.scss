@@ -1,0 +1,96 @@
+#main {
+  .home_title {
+    font-size: 26px;
+    font-weight: normal;
+    line-height: 28px;
+    margin-bottom: 20px;
+    padding-left: 40px;
+    padding-top: 31px;
+    margin-top: 25px;
+    color: #333;
+  }
+
+  form {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    & .flex-column {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+    & .flex-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    & input {
+      &[type="text"] {
+        width: 100%;
+      }
+    }
+
+    // Styling for url input
+    & .home_url input {
+      &[name="url"] {
+        font-size: 17px;
+        padding: 10px 16px;
+
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+        &:focus {
+          border-color: #66afe9;
+          outline: 0;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+            0 0 8px rgba(102, 175, 233, 0.6);
+        }
+      }
+      &[type="submit"] {
+        font-size: 17px;
+        padding: 10px 16px;
+
+        display: table-cell;
+        color: #fff;
+        background-color: #005eaa;
+        cursor: pointer;
+        border: 1px solid #005091;
+        border-radius: 8px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        &:hover {
+          background-color: #004277;
+          border-color: #002e53;
+        }
+      }
+    }
+
+    // Styling for keyword input
+    strong {
+      font-size: 13px;
+    }
+    & .home_optional_keyword {
+      margin-top: 2em;
+      font-size: 12px;
+      & label {
+        padding: 5px 10px;
+        font-weight: normal;
+        color: #555;
+        text-align: center;
+        background-color: #eee;
+        border: 1px solid #ccc;
+      }
+      & input {
+        padding: 5px 10px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        border: 1px solid #ccc;
+        color: #555;
+        background-color: #fff;
+      }
+    }
+  }
+}
