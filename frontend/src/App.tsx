@@ -14,7 +14,42 @@ function App() {
             <a href="/">{/* backgroundimage appears */}</a>
             <div className="title">Kurzlink-Service</div>
           </header>
-          <div id="main"></div>
+          <div id="main">
+            <h2 className="home_title">
+              Erstelle einen Goethe-Universität-Kurzlink
+            </h2>
+
+            <form className="home_form">
+              <div className="home_url flex-row">
+                <input
+                  type="text"
+                  name="url"
+                  placeholder="http://etwas.uni-frankfurt.de/..."
+                  required
+                />
+                <input type="submit" value="Kürzen" />
+              </div>
+              <div className="home_optional_keyword flex-column">
+                <strong>
+                  Optional kannst du statt des Zufallkürzels ein eigenes
+                  vergeben:
+                </strong>
+
+                <div className="flex-row">
+                  <label id="current_page_url">
+                    <script>
+                      $("#current_page_url").html(window.location.origin);
+                    </script>
+                  </label>
+                  <input
+                    type="text"
+                    name="keyword"
+                    placeholder="Optionales Kürzel"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
           <footer>
             <section>
               <a href="http://www.uni-frankfurt.de/">
