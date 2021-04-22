@@ -1,10 +1,13 @@
 import React from "react";
 import "./App.scss";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
+import impressum from "./impressum";
+import Datapolicy from "./Datapolicy";
 
 function App() {
   return (
-    <div className="App">
-      <html>
+    <BrowserRouter>
+      <div className="App">
         <body>
           <header>
             <a href="/">{/* backgroundimage appears */}</a>
@@ -23,8 +26,12 @@ function App() {
             </section>
           </footer>
         </body>
-      </html>
-    </div>
+      </div>
+      <Switch>
+        <Route path="/impressum" exact component={impressum} />
+        <Route path="/datenschutz" exact component={Datapolicy} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
