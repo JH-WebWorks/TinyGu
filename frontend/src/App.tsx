@@ -36,11 +36,7 @@ function App() {
                 </strong>
 
                 <div className="flex-row">
-                  <label id="current_page_url">
-                    <script>
-                      $("#current_page_url").html(window.location.origin);
-                    </script>
-                  </label>
+                  <label id="current_page_url">{window.location.href}</label>
                   <input
                     type="text"
                     name="keyword"
