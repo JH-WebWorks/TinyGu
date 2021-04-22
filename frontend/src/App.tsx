@@ -10,24 +10,23 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <body>
-          <header>
-            <a href="/">{/* backgroundimage appears */}</a>
-            <div className="title">Kurzlink-Service</div>
-          </header>
-          <footer>
-            <section>
-              <a href="http://www.uni-frankfurt.de/">
-                Die Goethe-Universität Frankfurt am Main
-              </a>
-              <div className="pull-right">
-                <a href="/datenschutz">Datenschutzerklärung</a>|
-                <a href="/impressum">Impressum</a>|<a href="/AGB">AGB</a>
-              </div>
-            </section>
-          </footer>
-        </body>
+        <header>
+          <a href="/">{/* backgroundimage appears */}</a>
+          <div className="title">Kurzlink-Service</div>
+        </header>
+        <footer>
+          <section>
+            <a href="http://www.uni-frankfurt.de/">
+              Die Goethe-Universität Frankfurt am Main
+            </a>{" "}
+            <div className="pull-right">
+              <a href="/datenschutz">Datenschutzerklärung</a>|
+              <a href="/impressum">Impressum</a>|<a href="/AGB">AGB</a>
+            </div>
+          </section>
+        </footer>
       </div>
+
       <Switch>
         <Route path="/" exact component={Main} />
         <Route path="/impressum" exact component={Impressum} />

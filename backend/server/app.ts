@@ -9,6 +9,8 @@ app.set('port', port)
 
 import path from "path";
 // import favicon from 'serve-favicon';
+import cors from "cors"
+app.use(cors())
 
 import index from "./routes/index";
 import redirect from "./routes/redirect";
@@ -50,9 +52,15 @@ app.use(
 );
 
 // api routing
-app.use("api/create", create);
+app.use("/api/create", create);
+
 app.use(redirect);
 
+app.post("/api/post", (req, res) => {
+  console.log("Connected to React");
+ 
+  res.redirect("/");
+});
 // start the app
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

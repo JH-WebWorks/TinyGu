@@ -17,7 +17,8 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
       },
     })
     .then((inserted) => res.status(200).json(inserted));
-}
+console.log(req.body.url)
+  }
 
 function generateKeyword(
   length: number,
