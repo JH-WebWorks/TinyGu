@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
-import impressum from "./impressum";
+import Impressum from "./Impressum";
 import Datapolicy from "./Datapolicy";
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         </body>
       </div>
       <Switch>
-        <Route path="/impressum" exact component={impressum} />
+        <Route path="/impressum" exact component={Impressum} />
         <Route path="/datenschutz" exact component={Datapolicy} />
       </Switch>
     </BrowserRouter>

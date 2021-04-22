@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.scss";
+import "./Impressum.scss";
 
-function impressum() {
+function Impressum() {
   return <div className="impressum">impressum</div>;
 }
 
-export default impressum;
+export default Impressum;
