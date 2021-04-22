@@ -7,12 +7,7 @@ function App() {
       <html>
         <body>
           <header>
-            <a href="/">
-              <img
-                src="/assets/uni_head_official-colorinverted.svg"
-                alt="Goethe-Universität Frankfurt am Main"
-              />
-            </a>
+            <a href="/">{/* backgroundimage appears */}</a>
             <div className="title">Kurzlink-Service</div>
           </header>
           <div id="main"></div>

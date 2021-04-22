@@ -117,7 +117,20 @@
       display: none;
     }
   }
-
+  & a {
+    width: 141px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    margin-right: 54px;
+    height: 76px;
+    @media only screen and (max-width: 600px) {
+      margin-bottom: 0px;
+      margin-right: 54px;
+    }
+    background-image: url("/assets/uni_head_official-colorinverted.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   & img {
     margin-top: 8px;
     margin-bottom: 20px;
