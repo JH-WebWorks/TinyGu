@@ -50,7 +50,7 @@ app.use(
 );
 
 // api routing
-app.use("/create", create);
+app.use("api/create", create);
 app.use(redirect);
 
 // start the app

@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.scss";
+import "./styles/App.scss";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Impressum from "./Impressum";
 import Datapolicy from "./Datapolicy";

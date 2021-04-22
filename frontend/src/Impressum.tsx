@@ -1,5 +1,5 @@
 import React from "react";
-import "./Impressum.scss";
+import "./styles/Impressum.scss";
 
 function Impressum() {
   return <div className="impressum">impressum</div>;
