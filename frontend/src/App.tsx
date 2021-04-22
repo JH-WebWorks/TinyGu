@@ -3,6 +3,7 @@ import "./App.scss";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Impressum from "./Impressum";
 import Datapolicy from "./Datapolicy";
+import AGB from "./Agb";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Switch>
         <Route path="/impressum" exact component={Impressum} />
         <Route path="/datenschutz" exact component={Datapolicy} />
+        <Route path="/agb" exact component={AGB} />
       </Switch>
     </BrowserRouter>
   );
