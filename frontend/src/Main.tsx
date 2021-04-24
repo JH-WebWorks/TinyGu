@@ -3,32 +3,59 @@ import "./styles/Main.scss";
 //import useState from "react";
 
 function Main() {
-  //const [Link, setLink] = React.useState({});
+  const [Link, setLink] = React.useState("");
+  const [Keyword, setKeyword] = React.useState("");
 
   async function createLink() {
-    await fetch("/api/test", {
-      method: "GET",
+    console.log("triggered");
+    await fetch("/api/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        url: Link,
+        key: Keyword,
+      }),
     })
-      .then((result) => result.text)
-      .then((result) => console.log(result));
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          console.log("worked");
+        } else {
+          console.log("did not work");
+        }
+      });
     //console.log(Link);
   }
   /* function test() {
     console.log("success"); */
+  async function ConnectionTest() {
+    await fetch("/api/post", {
+      method: "POST",
+    });
+  }
 
   return (
     <div id="main">
       <h2 className="home_title">Erstelle einen Goethe-Universität-Kurzlink</h2>
 
-      <form className="home_form">
+      <div
+        className="home_form"
+        /*  onSubmit={() => {
+          createLink();
+        }} */
+      >
         <div className="home_url flex-row">
           <input
             type="text"
             name="url"
             placeholder="http://etwas.uni-frankfurt.de/..."
             required
+            value={Link}
+            onChange={(e) => setLink(e.target.value)}
           />
-          <input type="submit" value="Kürzen" onClick={createLink} />
+          <input value="Kürzen" onClick={createLink} type="submit" />
         </div>
         <div className="home_optional_keyword flex-column">
           <strong>
@@ -37,12 +64,23 @@ function Main() {
 
           <div className="flex-row">
             <label id="current_page_url">{window.location.href}</label>
-            <input type="text" name="keyword" placeholder="Optionales Kürzel" />
+            <input
+              type="text"
+              name="keyword"
+              placeholder="Optionales Kürzel"
+              value={Keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
           </div>
         </div>
-      </form>
-      <form action="../../api/post" method="post" className="form">
-        <button type="submit">Connected?</button>
+      </div>
+      <form
+        /* action="../../api/post" method="post" */
+        className="form"
+      >
+        <button onClick={ConnectionTest} type="submit">
+          Connected?
+        </button>
       </form>
     </div>
   );
