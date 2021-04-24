@@ -13,11 +13,12 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
     .create({
       data: {
         url: req.body.url,
-        keyword: keyword,
+        keyword: req.body.key ? req.body.key : keyword,
       },
     })
     .then((inserted) => res.status(200).json(inserted));
 console.log(req.body.url)
+console.log(keyword)
   }
 
 function generateKeyword(
@@ -57,6 +58,7 @@ function getDomain(url: string) {
 
 function validateUrl(url: string) {
   if (url === "" || url === undefined || url === null) {
+    console.log(url);
     return false;
   }
   if (urlParser.parse(url).host === null) {
