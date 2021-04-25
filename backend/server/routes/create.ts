@@ -18,7 +18,7 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
     })
     .then((inserted) => res.status(200).json(inserted));
 console.log(req.body.url)
-console.log(keyword)
+console.log(req.body.key)
   }
 
 function generateKeyword(
