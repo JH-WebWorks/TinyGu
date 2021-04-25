@@ -31,13 +31,6 @@ function Main() {
         }
       });
   }
-  /* function test() {
-    console.log("success"); */
-  async function ConnectionTest() {
-    await fetch("/api/post", {
-      method: "POST",
-    });
-  }
 
   return (
     <div id="main">
@@ -72,14 +65,6 @@ function Main() {
           </div>
         </div>
       </div>
-      <form
-        /* action="../../api/post" method="post" */
-        className="form"
-      >
-        <button onClick={ConnectionTest} type="submit">
-          Connected?
-        </button>
-      </form>
     </div>
   );
 }
