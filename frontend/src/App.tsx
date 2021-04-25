@@ -1,4 +1,3 @@
-import React from "react";
 import "./styles/App.scss";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Impressum from "./Impressum";
