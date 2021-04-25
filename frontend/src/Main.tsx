@@ -43,12 +43,7 @@ function Main() {
     <div id="main">
       <h2 className="home_title">Erstelle einen Goethe-Universität-Kurzlink</h2>
 
-      <div
-        className="home_form"
-        /*  onSubmit={() => {
-          createLink();
-        }} */
-      >
+      <div className="home_form">
         <div className="home_url flex-row">
           <input
             type="text"
