@@ -5,6 +5,7 @@ import "./styles/Main.scss";
 function Main() {
   const [Link, setLink] = React.useState("");
   const [Keyword, setKeyword] = React.useState("");
+  const [Success, setSucces] = React.useState(false);
 
   async function createLink() {
     console.log("triggered");
@@ -20,7 +21,10 @@ function Main() {
     })
       .then((response) => response.json())
       .then((response) => {
-        if (response.error === "the url is not valid") {
+        if (!response.error) {
+          setSucces(true);
+          setKeyword(response.keyword);
+        } else if (response.error === "the url is not valid") {
           alert("Die URL ist nicht gültig");
         } else if (response.error === "keyword already exists") {
           alert("Das Kürzel ist bereits vergeben");
@@ -35,7 +39,6 @@ function Main() {
   return (
     <div id="main">
       <h2 className="home_title">Erstelle einen Goethe-Universität-Kurzlink</h2>
-
       <div className="home_form">
         <div className="home_url flex-row">
           <input
@@ -65,6 +68,12 @@ function Main() {
           </div>
         </div>
       </div>
+      {Success ? (
+        <div className="shortlink">
+          {window.location.href}
+          {Keyword}
+        </div>
+      ) : null}
     </div>
   );
 }
