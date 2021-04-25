@@ -31,9 +31,20 @@ function App() {
         <Route path="/impressum" exact component={Impressum} />
         <Route path="/datenschutz" exact component={Datapolicy} />
         <Route path="/agb" exact component={AGB} />
+        <Route path="*">{noMatch()}</Route>
       </Switch>
     </BrowserRouter>
   );
+}
+
+function noMatch() {
+  fetch(window.location.pathname, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((response) => console.log(response));
+
+  return <div>Redirecting...</div>;
 }
 
 export default App;
