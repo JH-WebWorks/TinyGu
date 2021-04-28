@@ -9,8 +9,7 @@ app.set('port', port)
 
 import path from "path";
 // import favicon from 'serve-favicon';
-import cors from "cors"
-app.use(cors())
+
 
 import index from "./routes/index";
 import redirect from "./routes/redirect";
