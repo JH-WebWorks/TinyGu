@@ -13,7 +13,7 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
     .create({
       data: {
         url: req.body.url,
-        keyword: req.body.key ? req.body.key : keyword,
+        keyword: keyword,
       },
     })
     .then((inserted) => res.status(200).json(inserted));

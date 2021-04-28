@@ -8,7 +8,6 @@ function Main() {
   const [Success, setSucces] = React.useState(false);
 
   async function createLink() {
-    console.log("triggered");
     await fetch("/api/create", {
       method: "POST",
       headers: {
@@ -16,7 +15,7 @@ function Main() {
       },
       body: JSON.stringify({
         url: Link,
-        key: Keyword,
+        keyword: Keyword,
       }),
     })
       .then((response) => response.json())
