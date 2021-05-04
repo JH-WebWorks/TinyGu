@@ -8,7 +8,17 @@ const prisma = new PrismaClient();
 
 import { allowedUrls } from "../../config.json";
 
+
+
+
 function insertIntoDatabase(req: Request, res: Response, keyword: string) {
+if (!prisma.links.
+  findUnique({
+    where: {
+      keyword: keyword,
+    },
+  })
+){
   prisma.links
     .create({
       data: {
@@ -16,9 +26,9 @@ function insertIntoDatabase(req: Request, res: Response, keyword: string) {
         keyword: keyword,
       },
     })
-    .then((inserted) => res.status(200).json(inserted));
-console.log(req.body.url)
-console.log(req.body.key)
+    .then((inserted) => res.status(200).json(inserted));}
+else {
+return res.status(400).json({ error: "the key already exists" })}
   }
 
 function generateKeyword(
