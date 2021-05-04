@@ -8,28 +8,31 @@ const prisma = new PrismaClient();
 
 import { allowedUrls } from "../../config.json";
 
-
-
-
-function insertIntoDatabase(req: Request, res: Response, keyword: string) {
-if (!prisma.links.
-  findUnique({
-    where: {
-      keyword: keyword,
-    },
-  })
-){
-  prisma.links
-    .create({
-      data: {
-        url: req.body.url,
-        keyword: keyword,
-      },
-    })
-    .then((inserted) => res.status(200).json(inserted));}
-else {
-return res.status(400).json({ error: "the key already exists" })}
+async function insertIntoDatabase(
+  req: Request,
+  res: Response,
+  keyword: string
+) {
+  try {
+    await prisma.links
+      .create({
+        data: {
+          url: req.body.url,
+          keyword: keyword,
+        },
+      })
+      .then((inserted) => {
+        res.status(200).json(inserted);
+      });
+  } catch (e) {
+    console.log(e);
+    if (e.code === "P2002") {
+      return res.status(400).json({ error: "keyword already exists" });
+    } else {
+      return res.status(400).json({ error: "the keyword is not valid" });
+    }
   }
+}
 
 function generateKeyword(
   length: number,
