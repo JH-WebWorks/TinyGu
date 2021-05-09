@@ -8,7 +8,6 @@ function Main() {
   const [Success, setSucces] = React.useState(false);
 
   async function createLink() {
-    console.log("triggered");
     await fetch("/api/create", {
       method: "POST",
       headers: {
@@ -16,7 +15,7 @@ function Main() {
       },
       body: JSON.stringify({
         url: Link,
-        key: Keyword,
+        keyword: Keyword,
       }),
     })
       .then((response) => response.json())
@@ -27,10 +26,12 @@ function Main() {
         } else if (response.error === "the url is not valid") {
           alert("Die URL ist nicht gültig");
         } else if (response.error === "keyword already exists") {
-          alert("Das Kürzel ist bereits vergeben");
+          alert(
+            "Das Kürzel ist bereits vergeben. Bitte wählen Sie ein anderes."
+          );
         } else if (response.error === "the keyword is not valid") {
           alert(
-            "Ungültiges Kürzel. Das Kürzel darf nur A-Z, a-z, 0-9 und - enthalten"
+            "Ungültiges Kürzel. Das Kürzel darf nur A-Z, a-z, 0-9 und - enthalten."
           );
         }
       });
