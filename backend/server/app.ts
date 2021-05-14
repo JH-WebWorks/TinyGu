@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import proxy from "express-http-proxy";
 const app = express();
 const port = process.env.PORT || "8080";
 
@@ -22,10 +23,14 @@ app.use(compression());
 
 app.use(express.json());
 
+app.use(redirect);
+
+// lade index.html
+
 // api routing
 app.use("/api/create", create);
 
-app.use(redirect);
+app.use(proxy("http://localhost:3000"));
 
 // start the app
 // eslint-disable-next-line no-console

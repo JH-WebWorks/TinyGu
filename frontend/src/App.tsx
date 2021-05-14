@@ -17,7 +17,7 @@ function App() {
           <section>
             <a href="http://www.uni-frankfurt.de/">
               Die Goethe-Universität Frankfurt am Main
-            </a>{" "}
+            </a>
             <div className="pull-right">
               <a href="/datenschutz">Datenschutzerklärung</a>|
               <a href="/impressum">Impressum</a>|<a href="/AGB">AGB</a>
@@ -31,20 +31,9 @@ function App() {
         <Route path="/impressum" exact component={Impressum} />
         <Route path="/datenschutz" exact component={Datapolicy} />
         <Route path="/agb" exact component={AGB} />
-        <Route path="*">{noMatch()}</Route>
       </Switch>
     </BrowserRouter>
   );
-}
-
-function noMatch() {
-  fetch(window.location.pathname, {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((response) => console.log(response));
-
-  return <div>Redirecting...</div>;
 }
 
 export default App;

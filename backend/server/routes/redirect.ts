@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import { PrismaClient } from "@prisma/client";
 const router = express.Router();
@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 dotenv.config();
 
 /* GET users listing. */
-router.get("/:shortlink", (req: Request, res: Response) => {
+router.get("/:shortlink", (req: Request, res: Response, next: NextFunction) => {
   prisma.links
     .findUnique({
       where: {
@@ -15,7 +15,7 @@ router.get("/:shortlink", (req: Request, res: Response) => {
     })
     .then((link) => {
       if (link === null) {
-        res.redirect("/404-Not-Found");
+        next();
       } else {
         prisma.clicks
           .create({
