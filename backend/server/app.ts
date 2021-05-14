@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import path from "path";
 import proxy from "express-http-proxy";
 const app = express();
 const port = process.env.PORT || "8080";
@@ -29,8 +30,20 @@ app.use(redirect);
 
 // api routing
 app.use("/api/create", create);
-
-app.use(proxy("http://localhost:3000"));
+if (
+  process.env.NODE_ENV === "production" ||
+  process.env.NODE_ENV === "staging"
+) {
+  // eslint-disable-next-line no-console
+  console.log("Running in Production");
+  const __dirname = path.resolve(path.dirname(""));
+  app.use("/static", express.static(path.join(__dirname, "build/static")));
+  app.get("*", function (req, res) {
+    res.sendFile("index.html", { root: path.join(__dirname, "build/") });
+  });
+} else {
+  app.use(proxy("http://localhost:3000"));
+}
 
 // start the app
 // eslint-disable-next-line no-console
