@@ -38,7 +38,7 @@ function Main() {
   }
 
   function showshortlink(Success: boolean, succeededKeyword: string) {
-    if (Success == true) {
+    if (Success === true) {
       return (
         <div className="shortlink">
           {window.location.href}
