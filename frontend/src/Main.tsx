@@ -37,6 +37,17 @@ function Main() {
       });
   }
 
+  function showshortlink(Success: boolean, succeededKeyword: string) {
+    if (Success == true) {
+      return (
+        <div className="shortlink">
+          {window.location.href}
+          {succeededKeyword}
+        </div>
+      );
+    }
+  }
+
   return (
     <div id="main">
       <h2 className="home_title">Erstelle einen Goethe-Universität-Kurzlink</h2>
@@ -69,12 +80,8 @@ function Main() {
           </div>
         </div>
       </div>
-      {{ Success } ? (
-        <div className="shortlink">
-          {window.location.href}
-          {succeededKeyword}
-        </div>
-      ) : null}
+
+      {showshortlink(Success, succeededKeyword)}
     </div>
   );
 }
