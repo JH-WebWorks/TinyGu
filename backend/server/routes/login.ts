@@ -1,7 +1,6 @@
 import { validatePassword } from "../crypto";
 import { PrismaClient } from "@prisma/client";
 import express from "express";
-import { type } from "os";
 const router = express.Router();
 const prisma = new PrismaClient();
 
