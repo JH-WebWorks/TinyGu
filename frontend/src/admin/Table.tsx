@@ -7,8 +7,7 @@ export default function Table() {
     Array<{ keyword: string; url: string; timestamp: string }>
   >([]);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  function getObjects() {
     fetch(
       "/api/admin?" +
         new URLSearchParams({
@@ -22,12 +21,36 @@ export default function Table() {
       .then(setObjects);
   }
 
+  function handleDelete(keyword: string) {
+    fetch("/api/admin", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ keyword: keyword }),
+    }).then(getObjects);
+  }
+
+  function handleUpdate(keyword: string) {
+    fetch("/api/admin", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ keyword: keyword }),
+    }).then(getObjects);
+  }
 
   const sorted_objects = objects;
 
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          getObjects();
+        }}
+      >
         <input
           type="text"
           placeholder="Suchbegriff..."
@@ -46,6 +69,13 @@ export default function Table() {
           </tr>
           {sorted_objects.map((elem) => (
             <tr key={elem.keyword}>
+              <td>
+                <input
+                  type="button"
+                  value="delete"
+                  onClick={() => handleDelete(elem.keyword)}
+                />
+              </td>
               <td>{elem.keyword}</td>
               <td>{elem.url}</td>
               <td>

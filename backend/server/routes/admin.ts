@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
-import { nextTick } from "process";
+import { nextTick, send } from "process";
 const router = express.Router();
 const prisma = new PrismaClient();
 
@@ -35,6 +35,20 @@ router.get("/", (req, res) => {
       },
     })
     .then((result) => res.status(200).send(result));
+});
+
+router.delete("/", (req, res) => {
+  if (typeof req.body.keyword !== "string") {
+    return res.status(400).send();
+  }
+  prisma.links
+    .delete({
+      where: {
+        keyword: req.body.keyword,
+      },
+    })
+    .then(() => res.status(200).send())
+    .catch(() => res.status(404).send());
 });
 
 export default router;
