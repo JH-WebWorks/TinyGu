@@ -1,11 +1,12 @@
 import { validatePassword } from "../crypto";
 import { PrismaClient } from "@prisma/client";
 import express from "express";
+import { type } from "os";
 const router = express.Router();
 const prisma = new PrismaClient();
 
 async function validateUser(userEmail: string, password: string) {
-  if (typeof userEmail === "string" || typeof password === "string") {
+  if (typeof userEmail !== "string" || typeof password !== "string") {
     return false;
   }
   const user = await prisma.user.findFirst({ where: { email: userEmail } });
