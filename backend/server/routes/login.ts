@@ -12,6 +12,14 @@ async function validateUser(userEmail: string, password: string) {
   return validatePassword(password, user.password_hash, user.salt);
 }
 
+router.get("/", async (req, res) => {
+  if (req.session.email) {
+    res.status(200).send();
+  } else {
+    res.status(401).send();
+  }
+});
+
 router.post("/", async (req, res) => {
   const validLogin = await validateUser(req.body.email, req.body.password);
   if (validLogin) {
@@ -20,6 +28,10 @@ router.post("/", async (req, res) => {
   } else {
     res.status(401).send();
   }
+});
+
+router.delete("/", async (req, res) => {
+  req.session.destroy(() => res.status(200).send());
 });
 
 export default router;
