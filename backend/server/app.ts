@@ -18,7 +18,6 @@ declare module "express-session" {
 }
 
 // define the store of our sessions (it is our database)
-console.log(process.env.DB_HOST);
 const sessionStore = new MySQLStore({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,

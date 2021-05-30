@@ -5,6 +5,9 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 async function validateUser(userEmail: string, password: string) {
+  if (typeof userEmail === "string" || typeof password === "string") {
+    return false;
+  }
   const user = await prisma.user.findFirst({ where: { email: userEmail } });
   // console.log(validatePassword(password, user.password_hash, user.salt));
   return validatePassword(password, user.password_hash, user.salt);
@@ -12,7 +15,6 @@ async function validateUser(userEmail: string, password: string) {
 
 router.post("/", async (req, res) => {
   const validLogin = await validateUser(req.body.email, req.body.password);
-  console.log(validLogin);
   if (validLogin) {
     req.session.email = req.body.email;
     res.status(200).send();
