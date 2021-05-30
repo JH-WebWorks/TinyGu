@@ -1,0 +1,10 @@
+.Login {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  max-width: 500px;
+
+  & > input {
+    margin: 5px;
+  }
+}
