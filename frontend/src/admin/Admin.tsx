@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Login from "./Login";
+import Table from "./Table";
 import "./Admin.scss";
 
 export default function Admin() {
@@ -8,6 +9,7 @@ export default function Admin() {
   return (
     <div className="Admin">
       <Login login={login} setLogin={setLogin} />
+      {login ? <Table /> : null}
     </div>
   );
 }

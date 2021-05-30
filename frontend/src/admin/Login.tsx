@@ -69,7 +69,6 @@ export default function Login(props: { login: boolean; setLogin: any }) {
     return (
       <div>
         <input type="button" value="Logout" onClick={handleLogout} />
-        <h1>Logged in :)</h1>
       </div>
     );
   }
