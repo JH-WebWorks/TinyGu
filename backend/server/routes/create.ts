@@ -2,11 +2,11 @@ import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 dotenv.config();
-import urlParser from "url";
+
+import validateUrl from "../validator/url";
+import validateKeyword from "../validator/keyword";
 const router = express.Router();
 const prisma = new PrismaClient();
-
-import { allowedUrls } from "../../config.json";
 
 async function insertIntoDatabase(
   req: Request,
@@ -25,7 +25,6 @@ async function insertIntoDatabase(
         res.status(200).json(inserted);
       });
   } catch (e) {
-    console.log(e);
     if (e.code === "P2002") {
       return res.status(400).json({ error: "keyword already exists" });
     } else {
@@ -59,30 +58,6 @@ function generateKeyword(
     });
 }
 
-function getDomain(url: string) {
-  const parsedURL = urlParser.parse(url).host;
-
-  if (parsedURL === null) {
-    throw Error("host is null");
-  }
-  const hostArray = parsedURL.split(".");
-  return hostArray.slice(Math.max(hostArray.length - 2, 0)).join(".");
-}
-
-function validateUrl(url: string) {
-  if (url === "" || url === undefined || url === null) {
-    console.log(url);
-    return false;
-  }
-  if (urlParser.parse(url).host === null) {
-    return false;
-  }
-  if (!allowedUrls.includes(getDomain(url))) {
-    return false;
-  }
-  return true;
-}
-
 /* GET users listing. */
 router.post("/", (req, res) => {
   if (!validateUrl(req.body.url)) {
@@ -95,8 +70,7 @@ router.post("/", (req, res) => {
   ) {
     generateKeyword(5, insertIntoDatabase, req, res);
   } else {
-    const regex = RegExp("^[A-Za-z0-9-]{3,100}$");
-    if (!regex.test(req.body.keyword)) {
+    if (!validateKeyword(req.body.keyword)) {
       return res.status(400).json({ error: "the keyword is not valid" });
     }
     insertIntoDatabase(req, res, req.body.keyword);
