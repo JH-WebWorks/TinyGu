@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
-import { nextTick, send } from "process";
+import validateUrl from "../validator/url";
+import validateKeyword from "../validator/keyword";
 const router = express.Router();
 const prisma = new PrismaClient();
 
@@ -49,6 +50,40 @@ router.delete("/", (req, res) => {
     })
     .then(() => res.status(200).send())
     .catch(() => res.status(404).send());
+});
+
+router.patch("/:keyword", (req, res) => {
+  if (
+    typeof req.body.keyword !== "string" ||
+    typeof req.body.url !== "string" ||
+    typeof req.params.keyword !== "string"
+  ) {
+    return res.status(400).send();
+  }
+
+  if (!validateUrl(req.body.url)) {
+    return res.status(400).json({ error: "the url is not valid" });
+  }
+  if (!validateKeyword(req.body.keyword)) {
+    return res.status(400).json({ error: "the keyword is not valid" });
+  }
+
+  prisma.links
+    .update({
+      where: { keyword: req.params.keyword },
+      data: { keyword: req.body.keyword, url: req.body.url },
+    })
+    .then((keyword) => res.status(200).send(keyword))
+    .catch((e) => {
+      switch (e.code) {
+        case "P2025":
+          res.status(404).json({ error: "keyword not found" });
+          break;
+        default:
+          res.status(500).send();
+          break;
+      }
+    });
 });
 
 export default router;
