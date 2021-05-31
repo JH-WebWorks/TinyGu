@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Login.scss";
 
-export default function Login(props: { login: boolean; setLogin: any }) {
+export default function Login(props: {
+  login: boolean;
+  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  useEffect(updateLogin, [props]);
 
   async function handleLogin() {
     const status = await fetch("/api/login", {
