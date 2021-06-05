@@ -81,7 +81,6 @@ export default function LinkTable() {
           inputProps={{ "aria-label": "search google maps" }}
           onChange={(e) => setSearch(e.target.value)}
         />
-
         <IconButton
           type="submit"
           className={classes.iconButton}
