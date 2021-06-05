@@ -8,9 +8,31 @@ import {
   TableRow,
   Table,
   TableFooter,
+  InputBase,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import SearchIcon from "@material-ui/icons/Search";
 import TablePaginationActions from "./TablePaginationActions";
 import LinkTableRow from "./LinkTableRow";
+import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2px 0 4px 0",
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: "10px",
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+}));
 
 export default function LinkTable() {
   const [page, setPage] = useState<number>(0);
@@ -49,31 +71,37 @@ export default function LinkTable() {
   }
 
   const sorted_objects = objects;
-
+  const classes = useStyles();
   return (
     <React.Fragment>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          getObjects();
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Suchbegriff..."
-          value={search}
+      <Paper component="form" className={classes.root}>
+        <InputBase
+          className={classes.input}
+          placeholder="Suchen"
+          inputProps={{ "aria-label": "search google maps" }}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <input type="submit" value="suchen" />
-      </form>
-      <TableContainer>
+
+        <IconButton
+          type="submit"
+          className={classes.iconButton}
+          aria-label="search"
+          onClick={(e) => {
+            e.preventDefault();
+            getObjects();
+          }}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Paper>
+      <TableContainer component={Paper}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">Action</TableCell>
-              <TableCell align="right">ShortLink</TableCell>
-              <TableCell align="right">url</TableCell>
-              <TableCell align="right">Created/Changed At</TableCell>
+              <TableCell align="left">Kurzlink</TableCell>
+              <TableCell align="left">URL</TableCell>
+              <TableCell align="left">Zuletzt bearbeitet</TableCell>
+              <TableCell align="left">Aktionen</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

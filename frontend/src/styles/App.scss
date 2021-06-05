@@ -9,6 +9,10 @@
   color: #333;
 }
 
+.App .Content {
+  width: 80vw;
+  margin: auto;
+}
 .home_form {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   & .flex-column {

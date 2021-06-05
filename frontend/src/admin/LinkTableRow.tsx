@@ -27,7 +27,15 @@ export default function LinkTableRow(props: {
 
   return (
     <TableRow hover role="checkbox" tabIndex={-1}>
-      <TableCell align="right">
+      <TableCell align="left">{props.element.keyword}</TableCell>
+      <TableCell align="left">{props.element.url}</TableCell>
+      <TableCell align="left">
+        {moment
+          .tz(props.element.timestamp, "Etc/UTC")
+          .tz("Europe/Berlin")
+          .format("HH:mm:ss")}
+      </TableCell>
+      <TableCell align="left">
         <IconButton
           color="primary"
           aria-label="upload picture"
@@ -44,14 +52,6 @@ export default function LinkTableRow(props: {
         >
           <EditIcon />
         </IconButton>
-      </TableCell>
-      <TableCell align="right">{props.element.keyword}</TableCell>
-      <TableCell align="right">{props.element.url}</TableCell>
-      <TableCell align="right">
-        {moment
-          .tz(props.element.timestamp, "Etc/UTC")
-          .tz("Europe/Berlin")
-          .format("HH:mm:ss")}
       </TableCell>
       <UpdateDialog
         open={open}
