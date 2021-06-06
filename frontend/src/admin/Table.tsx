@@ -8,6 +8,8 @@ import {
   TableRow,
   Table,
   TableFooter,
+  TextField,
+  Button,
 } from "@material-ui/core";
 import TablePaginationActions from "./TablePaginationActions";
 import LinkTableRow from "./LinkTableRow";
@@ -58,13 +60,16 @@ export default function LinkTable() {
           getObjects();
         }}
       >
-        <input
-          type="text"
-          placeholder="Suchbegriff..."
+        <TextField
+          label="Suchbegriff..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          variant="filled"
         />
-        <input type="submit" value="suchen" />
+        <Button variant="contained" color="primary" type="submit">
+          Suchen
+        </Button>
+        {/* <input type="submit" value="suchen" /> */}
       </form>
       <TableContainer>
         <Table stickyHeader aria-label="sticky table">
@@ -73,7 +78,7 @@ export default function LinkTable() {
               <TableCell align="right">Action</TableCell>
               <TableCell align="right">ShortLink</TableCell>
               <TableCell align="right">url</TableCell>
-              <TableCell align="right">Created/Changed At</TableCell>
+              <TableCell align="right">Erstellt am</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

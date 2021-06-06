@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import "./Login.scss";
 
@@ -71,8 +72,10 @@ export default function Login(props: {
 
   if (props.login) {
     return (
-      <div>
-        <input type="button" value="Logout" onClick={handleLogout} />
+      <div className="Logout">
+        <Button variant="contained" onClick={handleLogout}>
+          Logout
+        </Button>
       </div>
     );
   }
