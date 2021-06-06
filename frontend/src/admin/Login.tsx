@@ -71,7 +71,7 @@ export default function Login(props: {
 
   if (props.login) {
     return (
-      <div>
+      <div className="Logout">
         <input type="button" value="Logout" onClick={handleLogout} />
       </div>
     );
@@ -80,6 +80,7 @@ export default function Login(props: {
   return (
     <form onSubmit={handleSubmit} className="Login">
       <input
+        name="email"
         type="email"
         placeholder="E-Mail"
         value={email}
@@ -90,6 +91,7 @@ export default function Login(props: {
       />
       <input
         type="password"
+        name="password"
         placeholder="Password"
         value={password}
         onChange={(password) => {
