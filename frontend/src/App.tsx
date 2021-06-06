@@ -26,15 +26,17 @@ function App() {
             </div>
           </section>
         </footer>
-      </div>
 
-      <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/impressum" exact component={Impressum} />
-        <Route path="/datenschutz" exact component={Datapolicy} />
-        <Route path="/admin" exact component={Admin} />
-        <Route path="/agb" exact component={AGB} />
-      </Switch>
+        <div className="Content">
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/impressum" exact component={Impressum} />
+            <Route path="/datenschutz" exact component={Datapolicy} />
+            <Route path="/admin" exact component={Admin} />
+            <Route path="/agb" exact component={AGB} />
+          </Switch>{" "}
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
