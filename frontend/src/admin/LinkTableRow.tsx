@@ -33,7 +33,7 @@ export default function LinkTableRow(props: {
         {moment
           .tz(props.element.timestamp, "Etc/UTC")
           .tz("Europe/Berlin")
-          .format("DD:MM:YY")}
+          .format("DD.MM.YY")}
       </TableCell>
       <TableCell align="left">
         <IconButton
