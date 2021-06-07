@@ -28,8 +28,21 @@ export default function FormDialog(props: {
       },
       body: JSON.stringify({ keyword: newKeyword, url: newUrl }),
     })
-      .then(console.log)
-      .then(props.getObjects);
+      /* .then((response) => response.json())
+      .then((response) => {
+        console.log(response.status);
+      }) */
+      .then((response) => {
+        console.log(response);
+        if (response.ok === true) {
+          props.getObjects();
+        } else if (response.ok === false) {
+          alert(
+            "Ungültige Aktion! Das Kürzel muss einzigartig sein, mindestens 3 Zeichen haben und darf nur A-Z, a-z, 0-9 und - enthalten."
+          );
+        }
+      });
+    //.then(props.getObjects);
   }
 
   return (
