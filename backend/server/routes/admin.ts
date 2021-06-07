@@ -34,6 +34,7 @@ router.get("/", (req, res) => {
           },
         ],
       },
+      take: 500,
     })
     .then((result) => res.status(200).send(result));
 });
