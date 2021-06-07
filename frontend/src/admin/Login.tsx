@@ -76,7 +76,7 @@ export default function Login(props: {
         <Button variant="contained" onClick={handleLogout}>
           Logout
         </Button>
-        <input type="button" value="Logout" onClick={handleLogout} />
+        {/* <input type="button" value="Logout" onClick={handleLogout} /> */}
       </div>
     );
   }
