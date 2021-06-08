@@ -9,7 +9,7 @@ datasource db {
 
 model clicks {
   id          Int      @id @default(autoincrement())
-  timestamp   DateTime @db.DateTime(0) @default(now())
+  timestamp   DateTime @default(now()) @db.DateTime(0)
   linkKeyword String?  @db.VarChar(200)
   links       links?   @relation(fields: [linkKeyword], references: [keyword])
 
@@ -19,6 +19,18 @@ model clicks {
 model links {
   keyword   String   @id @db.VarChar(200)
   url       String   @db.Text
-  timestamp DateTime @db.DateTime(0) @default(now())
+  timestamp DateTime @default(now()) @db.DateTime(0)
   clicks    clicks[]
+}
+
+model user {
+  email         String @id @db.Char(255)
+  salt          String @db.Char(32)
+  password_hash String @db.Char(128)
+}
+
+model sessions {
+  session_id String  @id @db.VarChar(128)
+  expires    Int     @db.UnsignedInt
+  data       String? @db.MediumText
 }
