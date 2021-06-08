@@ -9,7 +9,9 @@ async function validateUser(userEmail: string, password: string) {
     return false;
   }
   const user = await prisma.user.findFirst({ where: { email: userEmail } });
-  return validatePassword(password, user.password_hash, user.salt);
+  if (user) {
+    return validatePassword(password, user.password_hash, user.salt);
+  }
 }
 
 router.get("/", async (req, res) => {
