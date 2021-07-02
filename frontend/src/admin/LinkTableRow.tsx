@@ -6,7 +6,12 @@ import { useState } from "react";
 import UpdateDialog from "./UpdateDialog";
 
 export default function LinkTableRow(props: {
-  element: { keyword: string; url: string; timestamp: string };
+  element: {
+    keyword: string;
+    url: string;
+    timestamp: string;
+    editstamp: string;
+  };
   getObjects: () => void;
 }) {
   const [open, setOpen] = useState<boolean>(false);
@@ -32,6 +37,12 @@ export default function LinkTableRow(props: {
       <TableCell align="left">
         {moment
           .tz(props.element.timestamp, "Etc/UTC")
+          .tz("Europe/Berlin")
+          .format("DD.MM.YY")}
+      </TableCell>
+      <TableCell align="left">
+        {moment
+          .tz(props.element.editstamp, "Etc/UTC")
           .tz("Europe/Berlin")
           .format("DD.MM.YY")}
       </TableCell>

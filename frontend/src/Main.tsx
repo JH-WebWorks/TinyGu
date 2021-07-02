@@ -3,9 +3,9 @@ import "./styles/Main.scss";
 
 function Main() {
   const [Link, setLink] = React.useState("");
-  const [Keyword, setKeyword] = React.useState("");
-  const [Success, setSuccess] = React.useState(false);
-  const [succeededKeyword, setSucceededKeyword] = React.useState("");
+  const [keyword, setKeyword] = React.useState("");
+  const [success, setSuccess] = React.useState(false);
+  const [successKeyword, setSuccessKeyword] = React.useState("");
 
   async function createLink() {
     await fetch("/api/create", {
@@ -15,14 +15,14 @@ function Main() {
       },
       body: JSON.stringify({
         url: Link,
-        keyword: Keyword,
+        keyword: keyword,
       }),
     })
       .then((response) => response.json())
       .then((response) => {
         if (!response.error) {
           setSuccess(true);
-          setSucceededKeyword(response.keyword);
+          setSuccessKeyword(response.keyword);
         } else if (response.error === "the url is not valid") {
           alert("Die URL ist nicht gültig");
         } else if (response.error === "keyword already exists") {
@@ -35,17 +35,6 @@ function Main() {
           );
         }
       });
-  }
-
-  function showshortlink(Success: boolean, succeededKeyword: string) {
-    if (Success === true) {
-      return (
-        <div className="shortlink">
-          {window.location.href}
-          {succeededKeyword}
-        </div>
-      );
-    }
   }
 
   return (
@@ -74,14 +63,18 @@ function Main() {
               type="text"
               name="keyword"
               placeholder="Optionales Kürzel"
-              value={Keyword}
+              value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
           </div>
         </div>
       </div>
-
-      {showshortlink(Success, succeededKeyword)}
+      {success ? (
+        <div className="shortlink">
+          {window.location.href}
+          {successKeyword}
+        </div>
+      ) : null}
     </div>
   );
 }
