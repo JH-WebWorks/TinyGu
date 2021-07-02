@@ -20,7 +20,7 @@ declare module "express-session" {
 app.use(
   session.default({
     // sessionID secret, will be changes in production
-    secret: "keyboard cat",
+    secret: process.env.SESSION_SECRET,
     /* set the store as our previously defined databse store, otherwise the session
      will be stored in the process */
     store: new PostgreSQLStore({
