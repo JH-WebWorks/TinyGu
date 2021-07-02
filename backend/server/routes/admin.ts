@@ -72,7 +72,11 @@ router.patch("/:keyword", (req, res) => {
   prisma.links
     .update({
       where: { keyword: req.params.keyword },
-      data: { keyword: req.body.keyword, url: req.body.url },
+      data: {
+        keyword: req.body.keyword,
+        url: req.body.url,
+        editstamp: new Date(),
+      },
     })
     .then((keyword) => res.status(200).send(keyword))
     .catch((e) => {

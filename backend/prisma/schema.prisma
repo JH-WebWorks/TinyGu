@@ -18,6 +18,7 @@ model links {
   keyword   String   @id @db.VarChar(200)
   url       String
   timestamp DateTime @default(now())
+  editstamp DateTime @default(now())
   clicks    clicks[]
 }
 
