@@ -15,7 +15,7 @@ For Develeopment usage you need to create a `.env` file in your root directory w
 ```
 DATABASE_URL = 'postgresql://user:password@localhost:5432/tinygu?schema=public'
 
-NODE_ENV= #optionaly
+NODE_ENV= #optional
 PORT=3000 #optional
 ```
 
