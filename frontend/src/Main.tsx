@@ -24,7 +24,6 @@ function Main() {
         if (!response.error) {
           setSuccess(true);
           setSuccessKeyword(response.keyword);
-          setKeyword(response.keyword);
         } else if (response.error === "the url is not valid") {
           alert("Die URL ist nicht gültig");
         } else if (response.error === "keyword already exists") {
