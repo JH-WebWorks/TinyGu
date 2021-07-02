@@ -13,10 +13,10 @@ As always `yarn`.
 For Develeopment usage you need to create a `.env` file in your root directory with the content:
 
 ```
-DATABASE_URL = 'mysql://root:root@localhost:3306/tinygu'
+DATABASE_URL = 'postgresql://user:password@localhost:5432/tinygu?schema=public'
 
 NODE_ENV= #optionaly
-PORT=(3000 by default) #optional
+PORT=3000 #optional
 ```
 
 ### For Development
