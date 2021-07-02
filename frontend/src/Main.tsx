@@ -31,7 +31,7 @@ function Main() {
           );
         } else if (response.error === "the keyword is not valid") {
           alert(
-            "Ungültiges Kürzel. Das Kürzel darf nur A-Z, a-z, 0-9 und - enthalten."
+            "Ungültiges Kürzel. Das Kürzel muss mindestens 3 Zeichen haben und darf nur A-Z, a-z, 0-9 und - enthalten."
           );
         }
       });

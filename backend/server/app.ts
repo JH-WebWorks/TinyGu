@@ -18,7 +18,6 @@ declare module "express-session" {
 }
 
 // define the store of our sessions (it is our database)
-console.log(process.env.DB_HOST);
 const sessionStore = new MySQLStore({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -55,6 +54,7 @@ app.set("port", port);
 import redirect from "./routes/redirect";
 import create from "./routes/create";
 import login from "./routes/login";
+import admin from "./routes/admin";
 
 // security package
 // import helmet from "helmet";
@@ -67,6 +67,7 @@ app.use(redirect);
 // api routing
 app.use("/api/create", create);
 app.use("/api/login", login);
+app.use("/api/admin", admin);
 
 // lode index.html
 if (
