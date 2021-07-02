@@ -4,8 +4,9 @@ import "./styles/Main.scss";
 
 function Main() {
   const [Link, setLink] = React.useState("");
-  const [Keyword, setKeyword] = React.useState("");
-  const [Success, setSucces] = React.useState(false);
+  const [keyword, setKeyword] = React.useState("");
+  const [success, setSuccess] = React.useState(false);
+  const [successKeyword, setSuccessKeyword] = React.useState("");
 
   async function createLink() {
     await fetch("/api/create", {
@@ -15,13 +16,14 @@ function Main() {
       },
       body: JSON.stringify({
         url: Link,
-        keyword: Keyword,
+        keyword: keyword,
       }),
     })
       .then((response) => response.json())
       .then((response) => {
         if (!response.error) {
-          setSucces(true);
+          setSuccess(true);
+          setSuccessKeyword(response.keyword);
           setKeyword(response.keyword);
         } else if (response.error === "the url is not valid") {
           alert("Die URL ist nicht gültig");
@@ -63,16 +65,16 @@ function Main() {
               type="text"
               name="keyword"
               placeholder="Optionales Kürzel"
-              value={Keyword}
+              value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
           </div>
         </div>
       </div>
-      {Success ? (
+      {success ? (
         <div className="shortlink">
           {window.location.href}
-          {Keyword}
+          {successKeyword}
         </div>
       ) : null}
     </div>

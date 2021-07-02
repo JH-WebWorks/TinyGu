@@ -7,16 +7,16 @@
     "deploy": "node server/app.ts"
   },
   "dependencies": {
-    "@prisma/client": "^2.23.0",
+    "@prisma/client": "^2.26.0",
     "@types/express-http-proxy": "^1.6.1",
     "compression": "^1.7.4",
+    "connect-pg-simple": "^6.2.1",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-http-proxy": "^1.6.2",
     "express-mysql-session": "^2.1.6",
     "express-session": "^1.17.2",
-    "helmet": "^3.22.0",
-    "mariadb": "^2.4.0"
+    "helmet": "^3.22.0"
   },
   "devDependencies": {
     "@jh-webworks/eslint-config-jh-webworks": "https://github.com/JH-WebWorks/rules.git",
@@ -30,7 +30,7 @@
     "@types/serve-favicon": "^2.5.2",
     "eslint": "^7.23.0",
     "nodemon": "^2.0.4",
-    "prisma": "^2.23.0",
+    "prisma": "^2.26.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   }

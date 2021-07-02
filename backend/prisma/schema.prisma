@@ -3,23 +3,21 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model clicks {
   id          Int      @id @default(autoincrement())
-  timestamp   DateTime @default(now()) @db.DateTime(0)
+  timestamp   DateTime @default(now())
   linkKeyword String?  @db.VarChar(200)
   links       links?   @relation(fields: [linkKeyword], references: [keyword])
-
-  @@index([linkKeyword], name: "linkKeyword")
 }
 
 model links {
   keyword   String   @id @db.VarChar(200)
-  url       String   @db.Text
-  timestamp DateTime @default(now()) @db.DateTime(0)
+  url       String
+  timestamp DateTime @default(now())
   clicks    clicks[]
 }
 
@@ -29,8 +27,10 @@ model user {
   password_hash String @db.Char(128)
 }
 
-model sessions {
-  session_id String  @id @db.VarChar(128)
-  expires    Int     @db.UnsignedInt
-  data       String? @db.MediumText
+model session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], name: "IDX_session_expire")
 }
