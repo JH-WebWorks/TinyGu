@@ -22,7 +22,8 @@ PORT=3000 #optional
 
 ### For Development
 
-Then you can start the deveopment server with `yarn run start`
+Then you can start the development backendserver by navigating to the backend directory and running `yarn run start`.
+Afterwards you can start the frontend by navigating to the frontend directory and running `yarn run start`
 
 ### For Production
 

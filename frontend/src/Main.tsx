@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles/Main.scss";
-//import useState from "react";
 
 function Main() {
   const [Link, setLink] = React.useState("");
