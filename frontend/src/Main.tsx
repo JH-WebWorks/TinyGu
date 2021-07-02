@@ -1,11 +1,11 @@
 import React from "react";
 import "./styles/Main.scss";
-//import useState from "react";
 
 function Main() {
   const [Link, setLink] = React.useState("");
   const [Keyword, setKeyword] = React.useState("");
-  const [Success, setSucces] = React.useState(false);
+  const [Success, setSuccess] = React.useState(false);
+  const [succeededKeyword, setSucceededKeyword] = React.useState("");
 
   async function createLink() {
     await fetch("/api/create", {
@@ -21,8 +21,8 @@ function Main() {
       .then((response) => response.json())
       .then((response) => {
         if (!response.error) {
-          setSucces(true);
-          setKeyword(response.keyword);
+          setSuccess(true);
+          setSucceededKeyword(response.keyword);
         } else if (response.error === "the url is not valid") {
           alert("Die URL ist nicht gültig");
         } else if (response.error === "keyword already exists") {
@@ -35,6 +35,17 @@ function Main() {
           );
         }
       });
+  }
+
+  function showshortlink(Success: boolean, succeededKeyword: string) {
+    if (Success === true) {
+      return (
+        <div className="shortlink">
+          {window.location.href}
+          {succeededKeyword}
+        </div>
+      );
+    }
   }
 
   return (
@@ -69,12 +80,8 @@ function Main() {
           </div>
         </div>
       </div>
-      {Success ? (
-        <div className="shortlink">
-          {window.location.href}
-          {Keyword}
-        </div>
-      ) : null}
+
+      {showshortlink(Success, succeededKeyword)}
     </div>
   );
 }
