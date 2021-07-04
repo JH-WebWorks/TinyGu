@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import express from "express";
+import prisma from "../db";
 import validateUrl from "../validator/url";
 import validateKeyword from "../validator/keyword";
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // this thing handles the authorization
 router.use(function (req, res, next) {

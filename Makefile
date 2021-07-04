@@ -1,6 +1,10 @@
 install: rmold build_backend build_frontend
 	echo "Done"
 
+run: 
+	cd build; \
+	node server/app.js
+
 build_frontend: 
 	cd frontend; \
 	yarn run build; \

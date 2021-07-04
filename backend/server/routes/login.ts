@@ -1,8 +1,7 @@
 import { validatePassword } from "../crypto";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../db";
 import express from "express";
 const router = express.Router();
-const prisma = new PrismaClient();
 
 async function validateUser(userEmail: string, password: string) {
   if (typeof userEmail !== "string" || typeof password !== "string") {

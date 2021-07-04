@@ -1,12 +1,11 @@
 import express, { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
+import prisma from "../db";
 dotenv.config();
 
 import validateUrl from "../validator/url";
 import validateKeyword from "../validator/keyword";
 const router = express.Router();
-const prisma = new PrismaClient();
 
 async function insertIntoDatabase(
   req: Request,

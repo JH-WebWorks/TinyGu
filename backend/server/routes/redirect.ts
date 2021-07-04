@@ -1,8 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../db";
 const router = express.Router();
-const prisma = new PrismaClient();
 dotenv.config();
 
 /* GET users listing. */
