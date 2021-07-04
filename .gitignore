@@ -11,3 +11,5 @@ frontend/build
 # package manager
 yarn-debug.log*
 yarn-error.log*
+
+build

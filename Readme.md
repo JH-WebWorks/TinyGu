@@ -2,9 +2,10 @@
 
 ## Requirements
 
-1. node v14.16.0
-2. Database (MariaDB)
-3. yarn v1.22.5
+1. node v14.18.0
+2. Database (PostgreSQL 9.6.10)
+3. yarn v1.22.10
+4. tsc 4.3.5
 
 ## Setup
 

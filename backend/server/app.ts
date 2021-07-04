@@ -70,20 +70,13 @@ app.use("/api/login", login);
 app.use("/api/admin", admin);
 
 // lode index.html
-if (
-  process.env.NODE_ENV === "production" ||
-  process.env.NODE_ENV === "staging"
-) {
-  // eslint-disable-next-line no-console
-  console.log("Running in Production");
-  const __dirname = path.resolve(path.dirname(""));
-  app.use("/static", express.static(path.join(__dirname, "build/static")));
-  app.get("*", function (req, res) {
-    res.sendFile("index.html", { root: path.join(__dirname, "build/") });
-  });
-} else {
-  app.use(proxy("http://localhost:3000"));
-}
+// eslint-disable-next-line no-console
+console.log("Running in Production");
+const path_dir = path.resolve(path.dirname(""));
+app.use("/static", express.static(path.join(path_dir, "build/static")));
+app.get("*", function (req, res) {
+  res.sendFile("index.html", { root: path.join(path_dir, "build/") });
+});
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
