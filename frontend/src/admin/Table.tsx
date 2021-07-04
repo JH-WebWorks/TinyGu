@@ -39,7 +39,12 @@ export default function LinkTable() {
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [search, setSearch] = useState<string>("");
   const [objects, setObjects] = useState<
-    Array<{ keyword: string; url: string; timestamp: string }>
+    Array<{
+      keyword: string;
+      url: string;
+      timestamp: string;
+      editstamp: string;
+    }>
   >([]);
 
   const handleChangePage = (
@@ -100,6 +105,7 @@ export default function LinkTable() {
             <TableRow>
               <TableCell align="left">Kurzlink</TableCell>
               <TableCell align="left">URL</TableCell>
+              <TableCell align="left">Erstellt</TableCell>
               <TableCell align="left">Zuletzt bearbeitet</TableCell>
               <TableCell align="left">Aktionen</TableCell>
             </TableRow>

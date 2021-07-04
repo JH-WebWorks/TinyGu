@@ -18,7 +18,7 @@ async function insertIntoDatabase(
       .create({
         data: {
           url: req.body.url,
-          keyword: keyword,
+          keyword: keyword.toLocaleLowerCase(),
         },
       })
       .then((inserted) => {

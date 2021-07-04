@@ -1,15 +1,14 @@
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
-import proxy from "express-http-proxy";
 const app = express();
 dotenv.config();
 const port = process.env.PORT || "8080";
 
 // setup session management
 import * as session from "express-session";
-import expressMySqlSession from "express-mysql-session";
-const MySQLStore = expressMySqlSession(session);
+import connectPgSimple from "connect-pg-simple";
+const PostgreSQLStore = connectPgSimple(session);
 
 declare module "express-session" {
   export interface SessionData {
@@ -17,22 +16,15 @@ declare module "express-session" {
   }
 }
 
-// define the store of our sessions (it is our database)
-const sessionStore = new MySQLStore({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  port: Number(process.env.DB_PORT),
-  password: process.env.DB_PASS,
-  database: process.env.DB_DATA,
-});
-
 app.use(
   session.default({
     // sessionID secret, will be changes in production
-    secret: "keyboard cat",
+    secret: process.env.SESSION_SECRET,
     /* set the store as our previously defined databse store, otherwise the session
      will be stored in the process */
-    store: sessionStore,
+    store: new PostgreSQLStore({
+      conString: process.env.DATABASE_URL,
+    }),
     /* this defines th result of unsetting req.session, 
     'destroy' will delete the session */
     unset: "destroy",
