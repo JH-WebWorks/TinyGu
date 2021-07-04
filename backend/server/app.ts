@@ -63,7 +63,6 @@ app.use("/api/admin", admin);
 
 // lode index.html
 // eslint-disable-next-line no-console
-console.log("Running in Production");
 const path_dir = path.resolve(path.dirname(""));
 app.use("/static", express.static(path.join(path_dir, "build/static")));
 app.get("*", function (req, res) {

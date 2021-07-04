@@ -28,13 +28,13 @@ Afterwards you can start the frontend by navigating to the frontend directory an
 
 ### For Production
 
-```
-NODE_ENV=(staging|production)
-```
+Run `make install` which builds your app from scratch.
 
-You want to run `yarn run deploy` with will create the CSS files from the SCSS files and starts the server.
+Then, create in the `build` directory a .env file (see Setup).
 
-There are no fancy functionalities implemented. If it crashes, it does not restart, you have to handle that yourself.
+After that you just have to `make run`.
+
+Note: There are no fancy functionalities implemented. If it crashes, it does not restart, you have to handle that yourself.
 
 ## Database
 
