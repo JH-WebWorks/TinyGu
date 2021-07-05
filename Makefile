@@ -15,6 +15,7 @@ build_frontend:
 
 build_backend:
 	cd backend; \
+	yarn; \
 	yarn run build; \
 	yarn install --production --modules-folder build/node_modules; \
 	mkdir ./build/prisma; \
