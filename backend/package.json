@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon server/app.ts -e ts,js,json,sql,scss,html",
     "deploy": "node server/app.ts",
-    "build": "npx tsc --project ./"
+    "build": "./node_modules/.bin/tsc --project ./"
   },
   "dependencies": {
     "@prisma/client": "^2.26.0",
