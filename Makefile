@@ -7,6 +7,7 @@ run:
 
 build_frontend: 
 	cd frontend; \
+	yarn; \
 	yarn run build; \
 	mkdir ../build/build; \
 	mv build/* ../build/build; \
