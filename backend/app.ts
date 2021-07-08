@@ -43,10 +43,10 @@ app.use(
 
 app.set("port", port);
 
-import redirect from "./routes/redirect";
-import create from "./routes/create";
-import login from "./routes/login";
-import admin from "./routes/admin";
+import redirect from "./server/routes/redirect";
+import create from "./server/routes/create";
+import login from "./server/routes/login";
+import admin from "./server/routes/admin";
 
 // security package
 // import helmet from "helmet";

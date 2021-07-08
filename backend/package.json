@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server/app.ts -e ts,js,json,sql,scss,html",
-    "deploy": "node server/app.ts",
+    "start": "nodemon app.ts -e ts,js,json,sql,scss,html",
+    "deploy": "node app.ts",
     "build": "./node_modules/.bin/tsc --project ./"
   },
   "dependencies": {
