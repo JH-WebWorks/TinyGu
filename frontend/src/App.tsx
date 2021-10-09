@@ -29,8 +29,7 @@ function App() {
         <div className="Content">
           <Switch>
             <Route path="/" exact component={Main} />
-            <Route path="/admin" exact component={Admin} />
-          </Switch>{" "}
+          </Switch>
         </div>
       </div>
     </BrowserRouter>
