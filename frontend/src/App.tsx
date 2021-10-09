@@ -2,6 +2,7 @@ import "./styles/App.scss";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Admin from "./admin/Admin";
 import Main from "./Main";
+import NotFound from "./NotFound";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Main} />
             <Route path="/admin" exact component={Admin} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </div>
       </div>
