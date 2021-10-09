@@ -45,7 +45,7 @@ function Main() {
           <input
             type="text"
             name="url"
-            placeholder="http://etwas.uni-frankfurt.de/..."
+            placeholder="https://etwas.uni-frankfurt.de/..."
             required
             value={Link}
             onChange={(e) => setLink(e.target.value)}
