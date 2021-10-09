@@ -3,7 +3,7 @@ install: rmold build_backend build_frontend
 
 run: 
 	cd build; \
-	node server/app.js
+	node app.js
 
 build_frontend: 
 	cd frontend; \
