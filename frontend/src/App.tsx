@@ -20,8 +20,7 @@ function App() {
               <a href="https://www.uni-frankfurt.de/70876599/Datenschutzerkl%C3%A4rung">
                 Datenschutzerklärung
               </a>
-              |<a href="https://www.uni-frankfurt.de/impressum">Impressum</a>|
-              <a href="/admin">Admin</a>
+              |<a href="https://www.uni-frankfurt.de/impressum">Impressum</a>
             </div>
           </section>
         </footer>
@@ -29,6 +28,7 @@ function App() {
         <div className="Content">
           <Switch>
             <Route path="/" exact component={Main} />
+            <Route path="/admin" exact component={Admin} />
           </Switch>
         </div>
       </div>
