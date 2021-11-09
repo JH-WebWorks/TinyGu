@@ -46,6 +46,19 @@ We use [Prisma](https://prisma.io) as our ORM. You can read the [concepts](https
 2. [Prisma Client Section 3 & 4](https://www.prisma.io/docs/concepts/components/prisma-client#3-use-prisma-client-to-send-queries-to-your-database)
 3. [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate)
 
+## Create new admin accounts
+
+Each admin user has
+
+- username: should be a mail adress
+- passwods (hash): a hashed password
+- a salt for that hash
+
+All these ingredients are stored in the database table `user`.
+The hash and salt can be generated with the script `TinyGu/backend/server/crypto.ts`
+
+You can run it by using `npx ts-node ./backend/server/crypto.ts`. The results are store in your table.
+
 ## REST API Documentation
 
 ### POST `/api/create`
