@@ -5,7 +5,7 @@ function NotFound() {
   return (
     <div id="notfound">
       <h1>
-        Sorry, but we haven't found, what your are looking for! But instead, we
+        Sorry, but we haven't found, what you are looking for! But instead, we
         found this!
       </h1>
       <img src={cuteDog} alt="cute Dog" />
