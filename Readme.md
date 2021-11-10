@@ -55,7 +55,7 @@ Each admin user has
 - a salt for that hash
 
 All these ingredients are stored in the database table `user`.
-The hash and salt can be generated with the script `TinyGu/backend/server/crypto.ts`
+The hash and salt can be generated with the script `./backend/server/crypto.ts`
 
 You can run it by using `npx ts-node ./backend/server/crypto.ts`. The results are store in your table.
 
